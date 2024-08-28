@@ -26,7 +26,7 @@ function Header() {
         </Nav>
         <Nav>
           <Nav.Link href="/mytasks">My Tasks</Nav.Link>
-          <NavDropdown title={userInfo.name?userInfo.name:"USER"} id="basic-nav-dropdown">
+          <NavDropdown title="USER" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">My Profile</NavDropdown.Item>
             <NavDropdown.Item onClick={
               logoutHandler
