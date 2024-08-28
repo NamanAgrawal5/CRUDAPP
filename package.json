@@ -1,0 +1,13 @@
+{
+  "name": "assignmentproject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start" : "node backend/index.js",
+    "server": "nodemon backend/index.js",
+    "build": "npm install --legacy--peer-deps && npm install --prefix client && npm run build --prefix client"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

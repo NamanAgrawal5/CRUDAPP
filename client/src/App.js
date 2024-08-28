@@ -8,6 +8,7 @@ import MyTasks from './components/MyTasks/MyTasks';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import CreateTasks from './components/CreateTask/CreateTasks';
+import SingleTask from './components/SingleTask';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/login" component={LoginPage}/>
           <Route path="/register" component={RegisterPage}/>
           <Route path="/createTask" component={CreateTasks}/>
+          <Route path="/task/:id" component={SingleTask}/>
           <Route path="/mytasks" component={MyTasks} />
       </main>
     </Router>

@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Badge from 'react-bootstrap/Badge';
 import { useDispatch, useSelector } from 'react-redux'
-import  {getTasks}  from '../../actions/taskActions'
+import  {deleteTask, getTasks}  from '../../actions/taskActions'
 import Loading from '../Loading'
 import ErrorMessage from '../ErrorMessage'
 function MyTasks() {
@@ -15,10 +15,12 @@ function MyTasks() {
   const { loading, tasks, error } = taskList;
   const userLogin = useSelector(state => state.userLogin);
   const { userInfo } = userLogin;
-
+  const taskDelete = useSelector(state => state.taskDelete);
+  const {loading:loadingDelete, error:errorDelete, success:successDelete} = taskDelete;
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure?')) {
-      // dispatch(deleteTask(id));
+       dispatch(deleteTask(id));
+       window.location.reload();
     }
   }
   useEffect(() => {
@@ -26,13 +28,14 @@ function MyTasks() {
     if (!userInfo) {
       window.location.href = '/';
     }
-  }, [dispatch, userInfo]);
+  }, [dispatch, userInfo, successDelete]);
   console.log(tasks);
   return (
     <MainScreen title={`Welcome Back ... ${userInfo.name}`}>
       <Link to="createtask">
         <Button className="btn btn-primary">Create a Task</Button>
       </Link>
+      {errorDelete && <ErrorMessage variant='danger' >{errorDelete}</ErrorMessage>}
       {error && <ErrorMessage variant='danger' >{error}</ErrorMessage>}
       {loading && <Loading />}
       {tasks?.map(task => (
